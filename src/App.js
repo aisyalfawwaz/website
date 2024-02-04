@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Beranda from './pages/Beranda';
+import Prestasi from './pages/Prestasi';
+import KegiatanSekolah from './pages/KegiatanSekolah';
+import RegistrationForm from './components/RegistrationForm';
+import { ThemeProvider } from './context/ThemeContext'; // Import the ThemeProvider
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ThemeProvider> {/* Wrap the App with ThemeProvider */}
+        <div>
+          {/* Navbar component */}
+          <Navbar />
+
+          {/* Routes */}
+          <Routes>
+            <Route path="/" element={<Beranda />} />
+            <Route path="/prestasi" element={<Prestasi />} />
+            <Route path="/kegiatan" element={<KegiatanSekolah />} />
+            <Route path="/registration" element={<RegistrationForm />} />
+
+            {/* Add other routes as needed */}
+          </Routes>
+
+          {/* Footer component */}
+          {/* <Footer /> */}
+        </div>
+      </ThemeProvider>
+    </Router>
   );
-}
+};
 
 export default App;
